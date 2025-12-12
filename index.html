@@ -177,6 +177,124 @@ body {
   }
 }
 
+/* =========================================================
+   ==============    MOBILE ≤ 480px    =====================
+========================================================= */
+@media (max-width: 480px) {
+  .hotspot {
+    width: 36px;
+    height: 36px;
+    filter: blur(6px);
+  }
+
+  #closeBtn {
+    top: 12px;
+    right: 12px;
+    width: 52px;
+    height: 52px;
+    font-size: 26px;
+    border-width: 2px;
+  }
+
+  #popupVideo {
+    width: 100%;
+    height: auto;
+  }
+
+  .popupText {
+    font-size: clamp(20px, 5vw, 30px);
+  }
+}
+
+/* =========================================================
+   ==============  MOBILE 481–768px  =======================
+========================================================= */
+@media (min-width: 481px) and (max-width: 768px) {
+  .hotspot {
+    width: 44px;
+    height: 44px;
+  }
+
+  #closeBtn {
+    top: 20px;
+    right: 20px;
+    width: 64px;
+    height: 64px;
+    font-size: 30px;
+  }
+
+  .popupText {
+    font-size: clamp(24px, 4vw, 36px);
+  }
+}
+
+/* =========================================================
+   ==============  TABLET NHỎ 769–1024px  ==================
+========================================================= */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hotspot {
+    width: 52px;
+    height: 52px;
+  }
+
+  #closeBtn {
+    width: 72px;
+    height: 72px;
+    font-size: 32px;
+  }
+
+  .popupText {
+    font-size: clamp(26px, 3.5vw, 40px);
+  }
+}
+
+/* =========================================================
+   ==============  LAPTOP NHỎ 1025–1366px  =================
+========================================================= */
+@media (min-width: 1025px) and (max-width: 1366px) {
+  .hotspot {
+    width: 58px;
+    height: 58px;
+  }
+
+  #closeBtn {
+    width: 76px;
+    height: 76px;
+    font-size: 34px;
+  }
+
+  .popupText {
+    font-size: clamp(28px, 3vw, 42px);
+  }
+}
+
+/* =========================================================
+   ==============   DESKTOP LỚN ≥ 1920px    ================
+========================================================= */
+@media (min-width: 1920px) {
+  #app {
+    max-width: 1800px;
+    max-height: 2400px;
+  }
+
+  .hotspot {
+    width: 80px;
+    height: 80px;
+  }
+
+  #closeBtn {
+    width: 100px;
+    height: 100px;
+    font-size: 44px;
+    border-width: 4px;
+  }
+
+  .popupText {
+    font-size: clamp(36px, 2vw, 56px);
+  }
+}
+
+
 </style>
 </head>
 
