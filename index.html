@@ -220,7 +220,7 @@ body {
 }
 
 /* =========================================================
-   ==============  LAPTOP NHỎ 1025–1366px  =================
+   LAPTOP 1024px → 1366px
 ========================================================= */
 @media (min-width: 1024px) and (max-width: 1366px) {
   .hotspot {
@@ -237,22 +237,10 @@ body {
   .popupText {
     font-size: clamp(28px, 3vw, 42px);
   }
-  #bgVideo {
-    width: auto !important;
-    height: 100% !important;
-    object-fit: contain !important; /* Giữ đủ trên-dưới */
-    background: #000; /* viền đen 2 bên */
-  }
-
-  #app {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #000;
-  }
 }
+
 /* =========================================================
-   ==============  PC 1367px → 1919px  ======================
+   PC 1367px → 1919px
 ========================================================= */
 @media (min-width: 1367px) and (max-width: 1919px) {
   .hotspot {
@@ -270,52 +258,21 @@ body {
     font-size: 40px;
   }
 
-  #popupVideo {
-    height: 100%;
-    width: auto;
-    object-fit: contain;
-  }
-
   .popupText {
     font-size: clamp(32px, 2.5vw, 52px);
     line-height: 1.1;
   }
-  #bgVideo {
-    width: auto !important;
-    height: 100% !important;
-    object-fit: contain !important; /* Giữ đủ trên-dưới */
-    background: #000; /* viền đen 2 bên */
-  }
-
-  #app {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #000;
-  }
 }
 
 /* =========================================================
-   ==============   DESKTOP LỚN ≥ 1920px    ================
+   DESKTOP ≥ 1920px
 ========================================================= */
 @media (min-width: 1920px) {
   #app {
     max-width: 1800px;
     max-height: 2400px;
   }
-  #bgVideo {
-    width: auto !important;
-    height: 100% !important;
-    object-fit: contain !important; /* Giữ đủ trên-dưới */
-    background: #000; /* viền đen 2 bên */
-  }
 
-  #app {
-    width: 100vw;
-    height: 100vh;
-    overflow: hidden;
-    background: #000;
-  }
   .hotspot {
     width: 80px;
     height: 80px;
@@ -332,6 +289,38 @@ body {
     font-size: clamp(36px, 2vw, 56px);
   }
 }
+
+/* =========================================================
+   VIDEO FIX CHUNG — ÁP DỤNG CHO TẤT CẢ ≥ 1024px
+   Video luôn vào giữa, không crop, thừa hai bên trái/phải OK
+========================================================= */
+@media (min-width: 1024px) {
+  #bgVideo {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #000;
+    display: block;       /* để margin auto hoạt động */
+    margin: 0 auto;       /* căn giữa trái phải */
+  }
+
+  #popupVideo {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important;
+    background: #000;
+    display: block;
+    margin: 0 auto;
+  }
+
+  #app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
+}
+
 
 
 </style>
