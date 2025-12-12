@@ -1,200 +1,299 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="vi">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Christmas Tree - Single File</title>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Christmas Tree (HTML Version)</title>
+
 <style>
-  :root{
-    --max-w:1620px;
-    --max-h:2160px;
-  }
-  html,body{
-    height:100%;
-    margin:0;
-    font-family: Inter, system-ui, Arial, sans-serif;
-    background:#000;
-    -webkit-font-smoothing:antialiased;
-    -moz-osx-font-smoothing:grayscale;
-  }
-  .stage {
-    position:relative;
-    width:100%;
-    height:100dvh;
-    max-width:var(--max-w);
-    max-height:var(--max-h);
-    margin:0 auto;
-    overflow:hidden;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    touch-action:manipulation;
-    user-select:none;
-  }
-  video.bg {
-    max-width:100%;
-    max-height:100%;
-    object-fit:contain;
-    display:block;
-  }
-  .ornament {
-    position:absolute;
-    transform:translate(-50%,-50%);
-    width:48px;
-    height:48px;
-    cursor:pointer;
-    z-index:30;
-    pointer-events:auto;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-  }
-  .ornament .glow{
-    position:absolute;
-    width:48px;
-    height:48px;
-    border-radius:50%;
-    background: radial-gradient(circle, rgba(255,255,255,0.95) 0%, rgba(255,255,255,0) 65%);
-    filter:blur(10px);
-    opacity:0.8;
-  }
-  @keyframes floatA { 0% { transform: translate(-50%,-50%) translateY(0) rotate(-2deg); } 50% { transform: translate(-50%,-56%) translateY(-6px) rotate(2deg);} 100% { transform: translate(-50%,-50%) translateY(0) rotate(-2deg);} }
-  @keyframes floatB { 0% { transform: translate(-50%,-50%) translateY(0) rotate(-2deg); } 50% { transform: translate(-50%,-54%) translateY(-4px) rotate(2deg);} 100% { transform: translate(-50%,-50%) translateY(0) rotate(-2deg);} }
-  @keyframes glowPulse { 0% { opacity:.4; transform:scale(1); } 50% { opacity:1; transform:scale(1.25);} 100% { opacity:.4; transform:scale(1);} }
-  .ornament[data-idx="0"]{ animation: floatA 2.0s ease-in-out infinite; animation-delay:0s; }
-  .ornament[data-idx="1"]{ animation: floatB 2.4s ease-in-out infinite; animation-delay:0.06s; }
-  .ornament[data-idx="2"]{ animation: floatA 2.6s ease-in-out infinite; animation-delay:0.12s; }
-  .ornament[data-idx="3"]{ animation: floatB 2.2s ease-in-out infinite; animation-delay:0.18s; }
-  .ornament[data-idx="4"]{ animation: floatA 2.8s ease-in-out infinite; animation-delay:0.24s; }
-  .ornament[data-idx="5"]{ animation: floatB 2.1s ease-in-out infinite; animation-delay:0.30s; }
-  .ornament[data-idx="6"]{ animation: floatA 2.3s ease-in-out infinite; animation-delay:0.36s; }
-  .ornament .glow { animation: glowPulse 2.4s infinite; }
-  .dialog {
-    position:absolute;
-    left:50%;
-    top:50%;
-    transform:translate(-50%,-50%);
-    width:min(520px, 92%);
-    z-index:70;
-    pointer-events:auto;
-    display:none;
-  }
-  .dialog.active { display:block; }
-  .dialog .close {
-    position:absolute;
-    right:10px; top:10px;
-    background:rgba(0,0,0,0.65);
-    color:#fff;
-    border:none;
-    width:30px;height:30px;border-radius:50%;
-    display:flex;align-items:center;justify-content:center;
-    cursor:pointer; z-index:90;
-  }
-  .dialog video {
-    width:100%;
-    height:auto;
-    display:block;
-    border-radius:12px;
-    box-shadow:0 8px 30px rgba(0,0,0,0.6);
-  }
-  .dialog .message {
-    position:absolute;
-    inset:0;
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    justify-content:center;
-    text-align:center;
-    font-weight:700;
-    font-size:20px;
-    pointer-events:none;
-    color:#000;
-    z-index:85;
-    line-height:1.05;
-  }
-  .snow {
-    position:absolute;
-    inset:0;
-    z-index:120;
-    pointer-events:none;
-    overflow:hidden;
-  }
-  .flake {
-    position:absolute;
-    top:-10%;
-    background:white;
-    border-radius:50%;
-    opacity:0.85;
-    filter:drop-shadow(0 0 6px rgba(255,255,255,0.6));
-    animation-name:fall;
-    animation-timing-function:linear;
-    animation-iteration-count:infinite;
-  }
-  @keyframes fall {
-    0% { transform: translateY(-10vh); opacity:0; }
-    10% { opacity:1; }
-    100% { transform: translateY(120vh); opacity:0.85; }
-  }
-  canvas.fireworks {
-    position:absolute;
-    left:0; top:0;
-    width:100%;
-    height:100%;
-    pointer-events:none;
-    z-index:50;
-  }
+/* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background: #000;
+  overflow: hidden;
+  font-family: sans-serif;
+}
+
+/* MAIN WRAPPER */
+#app {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1620px;
+  max-height: 1954px;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* BACKGROUND VIDEO */
+#bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+/* HOTSPOT */
+.hotspot {
+  position: absolute;
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255,255,255,0.95) 0%,
+    rgba(255,255,255,0) 60%
+  );
+  filter: blur(10px);
+  cursor: pointer;
+
+  animation: float 2.2s ease-in-out infinite;
+}
+
+@keyframes float {
+  0% { transform: translate(-50%, -50%) translateY(0) rotate(-2deg); }
+  50% { transform: translate(-50%, -50%) translateY(-8px) rotate(2deg); }
+  100% { transform: translate(-50%, -50%) translateY(0) rotate(-2deg); }
+}
+
+/* POPUP OVERLAY */
+#popupOverlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.6);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 300;
+}
+
+#popupBox {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1620px;
+  max-height: 2160px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* CLOSE BUTTON */
+#closeBtn {
+  position: absolute;
+  top: 40px;
+  right: 40px;
+  width: 80px;
+  height: 80px;
+  background: rgba(0,0,0,0.75);
+  border: 3px solid #fff;
+  color: #fff;
+  border-radius: 50%;
+  font-size: 36px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  z-index: 400;
+}
+
+/* POPUP VIDEO */
+#popupVideo {
+  max-width: 90%;
+  max-height: 90%;
+  object-fit: contain;
+  z-index: 10;
+}
+
+/* TEXT */
+.popupText {
+  position: absolute;
+  inset: 0;
+  font-size: 60px;
+  font-weight: bold;
+  color: #000;
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 20;
+}
+
+/* SNOW */
+.snowflake {
+  position: absolute;
+  top: -10px;
+  background: white;
+  border-radius: 50%;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 6px rgba(255,255,255,0.6));
+  animation: fall linear infinite;
+}
+
+@keyframes fall {
+  0% { transform: translateY(-20px); opacity: 0.3; }
+  50% { opacity: 1; }
+  100% { transform: translateY(110vh); opacity: 0.3; }
+}
+
+/* FIREWORK PARTICLE */
+.particle {
+  position: absolute;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  opacity: 0;
+  animation: explode 1.2s ease-out forwards;
+}
+
+@keyframes explode {
+  0% { transform: translate(0,0) scale(0.3); opacity: 1; }
+  100% { transform: var(--translate); opacity: 0; scale: 1.2; }
+}
+
 </style>
 </head>
-<body>
-<div class="stage" id="stage">
-  <div class="snow" id="snow"></div>
-  <video class="bg" id="bgVideo" src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765425321/BocTham_1620x1954_-_Testcode_haxvzm.mp4" autoplay muted loop playsinline></video>
-  <div class="ornament" data-id="1" data-idx="0" style="left:48%; top:14%;"><div class="glow"></div></div>
-  <div class="ornament" data-id="2" data-idx="1" style="left:47%; top:28%;"><div class="glow"></div></div>
-  <div class="ornament" data-id="3" data-idx="2" style="left:57%; top:40%;"><div class="glow"></div></div>
-  <div class="ornament" data-id="4" data-idx="3" style="left:33%; top:48%;"><div class="glow"></div></div>
-  <div class="ornament" data-id="5" data-idx="4" style="left:65%; top:58%;"><div class="glow"></div></div>
-  <div class="ornament" data-id="6" data-idx="5" style="left:24%; top:64%;"><div class="glow"></div></div>
-  <div class="ornament" data-id="7" data-idx="6" style="left:44%; top:64%;"><div class="glow"></div></div>
 
-  <div class="dialog" id="dialog">
-    <button class="close" id="closeBtn">✕</button>
-    <canvas class="fireworks" id="fwCanvas"></canvas>
-    <video id="popupVideo" src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765272670/1209_djpeju.mp4" autoplay muted loop playsinline></video>
-    <div class="message" id="dialogMessage"></div>
+<body>
+
+<div id="app">
+  <video id="bgVideo"
+    src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765425321/BocTham_1620x1954_-_Testcode_haxvzm.mp4"
+    autoplay loop muted playsinline>
+  </video>
+</div>
+
+<!-- POPUP -->
+<div id="popupOverlay">
+
+  <div id="popupBox">
+    <div id="closeBtn">✕</div>
+
+    <video id="popupVideo"
+      src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765272670/1209_djpeju.mp4"
+      autoplay loop muted playsinline>
+    </video>
+
+    <!-- TEXT LAYERS -->
+    <div class="popupText" id="text1">Bạn đã trúng<br>01 gối Kymdan<br>PressureFree Air</div>
+    <div class="popupText" id="text2">Bạn đã trúng<br>01 gối Kymdan<br>Glory Air</div>
+    <div class="popupText" id="text3">Bạn đã trúng<br>01 gối Kymdan<br>PressureFree Max</div>
+    <div class="popupText" id="text4">Bạn đã trúng<br>01 gối Kymdan<br>PressureFree Plus</div>
+    <div class="popupText" id="text5">Bạn đã trúng<br>01 bộ ga Kymdan<br>Lavish Prime</div>
+    <div class="popupText" id="text6">Bạn đã trúng<br>01 bộ ga Kymdan<br>Serenity</div>
+    <div class="popupText" id="text7">Bạn đã trúng<br>01 mền chăn Kymdan<br>SleepCool</div>
+
   </div>
 </div>
 
 <script>
-const messages = [
-  ["Bạn đã trúng","01 gối Kymdan","PressureFree Air"],
-  ["Bạn đã trúng","01 gối Kymdan","Glory Air"],
-  ["Bạn đã trúng","01 gối Kymdan","PressureFree Max"],
-  ["Bạn đã trúng","01 gối Kymdan","PressureFree Plus"],
-  ["Bạn đã trúng","01 bộ ga Kymdan","Lavish Prime"],
-  ["Bạn đã trúng","01 bộ ga Kymdan","Serenity"],
-  ["Bạn đã trúng","01 mền chăn Kymdan","SleepCool"],
+/* =====================================================
+      HOTSPOTS
+===================================================== */
+const ornamentPositions = [
+  { id: 1, x: "49%", y: "14%" },
+  { id: 2, x: "48%", y: "28%" },
+  { id: 3, x: "53%", y: "40%" },
+  { id: 4, x: "43%", y: "48%" },
+  { id: 5, x: "56%", y: "58%" },
+  { id: 6, x: "38%", y: "64%" },
+  { id: 7, x: "47%", y: "64%" },
 ];
-const ornaments=document.querySelectorAll('.ornament');
-const dialog=document.getElementById('dialog');
-const dialogMessage=document.getElementById('dialogMessage');
-const closeBtn=document.getElementById('closeBtn');
-let autoStopTimer=null;
 
-ornaments.forEach(o=>{
-  o.onclick=()=>{
-    const id=parseInt(o.dataset.id);
-    openDialog(id);
-  };
+const app = document.getElementById("app");
+
+ornamentPositions.forEach(pos => {
+  const dot = document.createElement("div");
+  dot.className = "hotspot";
+  dot.style.left = pos.x;
+  dot.style.top = pos.y;
+  dot.onclick = () => openPopup(pos.id);
+  app.appendChild(dot);
 });
 
-function openDialog(id){
-  dialog.classList.add('active');
-  const m=messages[id-1];
-  dialogMessage.innerHTML=m.join("<br>");
+/* =====================================================
+      POPUP
+===================================================== */
+const popupOverlay = document.getElementById("popupOverlay");
+const closeBtn = document.getElementById("closeBtn");
+
+closeBtn.onclick = closePopup;
+
+function openPopup(id) {
+  popupOverlay.style.display = "flex";
+
+  document.querySelectorAll(".popupText").forEach(t => t.style.display = "none");
+
+  const text = document.getElementById("text" + id);
+  if (text) text.style.display = "flex";
+
+  startFireworks();
+
+  setTimeout(() => {
+    closePopup();
+  }, 15000);
 }
 
-closeBtn.onclick=()=>dialog.classList.remove('active');
+function closePopup() {
+  popupOverlay.style.display = "none";
+}
+
+/* =====================================================
+      SNOW EFFECT
+===================================================== */
+function generateSnow() {
+  for (let i = 0; i < 48; i++) {
+    const flake = document.createElement("div");
+    flake.className = "snowflake";
+    flake.style.left = Math.random() * 100 + "%";
+    flake.style.width = flake.style.height = 6 + Math.random() * 8 + "px";
+    flake.style.animationDuration = 6 + Math.random() * 6 + "s";
+    flake.style.animationDelay = Math.random() * 6 + "s";
+    document.body.appendChild(flake);
+  }
+}
+generateSnow();
+
+/* =====================================================
+      FIREWORKS (LIGHTWEIGHT)
+===================================================== */
+function startFireworks() {
+  const container = document.createElement("div");
+  container.style.position = "absolute";
+  container.style.inset = 0;
+  container.style.pointerEvents = "none";
+  container.style.zIndex = 200;
+  document.body.appendChild(container);
+
+  for (let b = 0; b < 6; b++) {
+    const bx = Math.random() * 100;
+    const by = Math.random() * 60 + 10;
+
+    for (let i = 0; i < 24; i++) {
+      const p = document.createElement("div");
+      p.className = "particle";
+
+      const angle = Math.random() * Math.PI * 2;
+      const speed = 80 + Math.random() * 120;
+      const tx = Math.cos(angle) * speed;
+      const ty = Math.sin(angle) * speed;
+
+      p.style.left = bx + "%";
+      p.style.top = by + "%";
+      p.style.background = `hsl(${Math.random()*360},90%,60%)`;
+      p.style.setProperty("--translate", `translate(${tx}px, ${ty}px)`);
+
+      container.appendChild(p);
+    }
+  }
+
+  setTimeout(() => container.remove(), 1200);
+}
+
 </script>
 </body>
 </html>
