@@ -241,30 +241,55 @@ ornamentPositions.forEach(pos => {
 /* =====================================================
       POPUP
 ===================================================== */
+let autoCloseTimeout = null;
+  
 const popupOverlay = document.getElementById("popupOverlay");
 const closeBtn = document.getElementById("closeBtn");
-
+  
 closeBtn.onclick = closePopup;
 
 function openPopup(id) {
+  // clear previous auto-close (important when user opens/close fast)
+  if (autoCloseTimeout) {
+    clearTimeout(autoCloseTimeout);
+    autoCloseTimeout = null;
+  }
+
+  // ensure popup visible
   popupOverlay.style.display = "flex";
 
+  // reset text layers
   document.querySelectorAll(".popupText").forEach(t => t.style.display = "none");
-
   const text = document.getElementById("text" + id);
   if (text) text.style.display = "flex";
 
+  // restart fireworks safely (stop any running ones first)
+  stopFireworks();
   startFireworks();
 
-  setTimeout(() => {
+  // set auto-close for 15s (will be cleared if user reopens or closes)
+  autoCloseTimeout = setTimeout(() => {
+    // clear ref first then close
+    autoCloseTimeout = null;
     closePopup();
   }, 15000);
 }
 
+
 function closePopup() {
+  // hide popup
   popupOverlay.style.display = "none";
+
+  // clear auto-close timer if exists
+  if (autoCloseTimeout) {
+    clearTimeout(autoCloseTimeout);
+    autoCloseTimeout = null;
+  }
+
+  // stop fireworks immediately
   stopFireworks();
 }
+
 
 /* =====================================================
       SNOW EFFECT
