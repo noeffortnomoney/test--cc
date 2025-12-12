@@ -267,6 +267,42 @@ body {
     font-size: clamp(28px, 3vw, 42px);
   }
 }
+/* =========================================================
+   ==============  PC 1367px → 1919px  ======================
+========================================================= */
+@media (min-width: 1367px) and (max-width: 1919px) {
+
+  #app {
+    max-width: 1650px;
+    max-height: 2200px;
+  }
+
+  .hotspot {
+    width: 70px;
+    height: 70px;
+    filter: blur(12px);
+  }
+
+  #closeBtn {
+    width: 90px;
+    height: 90px;
+    top: 36px;
+    right: 36px;
+    border-width: 3px;
+    font-size: 40px;
+  }
+
+  #popupVideo {
+    height: 100%;
+    width: auto;
+    object-fit: contain;
+  }
+
+  .popupText {
+    font-size: clamp(32px, 2.5vw, 52px);
+    line-height: 1.1;
+  }
+}
 
 /* =========================================================
    ==============   DESKTOP LỚN ≥ 1920px    ================
