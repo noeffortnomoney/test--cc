@@ -36,20 +36,17 @@ body {
 }
 
 /* BACKGROUND VIDEO */
-#bgVideo {
+/* #bgVideo {
   position: absolute;
   inset: 0;
   width: 100%;
   height: 100%;
-  /* object-fit: cover; */ /* hoặc contain if cần */
   object-fit: contain;
-}
+} */
 
 /* HOTSPOT */
-.hotspot {
+/* .hotspot {
   position: absolute;
-  /* width: 64px;
-  height: 64px; */
   width: clamp(32px, 6vw, 64px);
   height: clamp(32px, 6vw, 64px);
   
@@ -63,7 +60,22 @@ body {
   cursor: pointer;
 
   animation: float 2.2s ease-in-out infinite;
+} */
+/* WRAPPER CHUẨN CHO VIDEO ĐỂ HOTSPOT ĐI THEO */
+#videoWrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
 }
+
+/* VIDEO — scale theo chiều cao nếu iPad, theo chiều ngang nếu mobile */
+#bgVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: contain; /* giữ đúng tỉ lệ 1620×1954 */
+}
+
 
 @keyframes float {
   0% { transform: translate(-50%, -50%) translateY(0) rotate(-2deg); }
@@ -218,12 +230,21 @@ body {
 
 <body>
 
-<div id="app">
+<!-- <div id="app">
   <video id="bgVideo"
     src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765425321/BocTham_1620x1954_-_Testcode_haxvzm.mp4"
     autoplay loop muted playsinline>
   </video>
+</div> -->
+<div id="app">
+  <div id="videoWrapper">
+    <video id="bgVideo"
+      src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765425321/BocTham_1620x1954_-_Testcode_haxvzm.mp4"
+      autoplay loop muted playsinline>
+    </video>
+  </div>
 </div>
+
 
 <!-- POPUP -->
 <div id="popupOverlay">
@@ -263,7 +284,7 @@ const ornamentPositions = [
   { id: 7, x: "48%", y: "67%" },
 ];
 
-const app = document.getElementById("app");
+const videoWrapper = document.getElementById("videoWrapper");
 
 ornamentPositions.forEach(pos => {
   const dot = document.createElement("div");
@@ -271,7 +292,7 @@ ornamentPositions.forEach(pos => {
   dot.style.left = pos.x;
   dot.style.top = pos.y;
   dot.onclick = () => openPopup(pos.id);
-  app.appendChild(dot);
+  videoWrapper.appendChild(dot);
 });
 
 /* =====================================================
