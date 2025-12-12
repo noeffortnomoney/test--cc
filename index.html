@@ -237,17 +237,24 @@ body {
   .popupText {
     font-size: clamp(28px, 3vw, 42px);
   }
+  #bgVideo {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important; /* Giữ đủ trên-dưới */
+    background: #000; /* viền đen 2 bên */
+  }
+
+  #app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
 }
 /* =========================================================
    ==============  PC 1367px → 1919px  ======================
 ========================================================= */
 @media (min-width: 1367px) and (max-width: 1919px) {
-
-  #app {
-    max-width: 1650px;
-    max-height: 2200px;
-  }
-
   .hotspot {
     width: 70px;
     height: 70px;
@@ -273,6 +280,19 @@ body {
     font-size: clamp(32px, 2.5vw, 52px);
     line-height: 1.1;
   }
+  #bgVideo {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important; /* Giữ đủ trên-dưới */
+    background: #000; /* viền đen 2 bên */
+  }
+
+  #app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
 }
 
 /* =========================================================
@@ -283,7 +303,19 @@ body {
     max-width: 1800px;
     max-height: 2400px;
   }
+  #bgVideo {
+    width: auto !important;
+    height: 100% !important;
+    object-fit: contain !important; /* Giữ đủ trên-dưới */
+    background: #000; /* viền đen 2 bên */
+  }
 
+  #app {
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+    background: #000;
+  }
   .hotspot {
     width: 80px;
     height: 80px;
