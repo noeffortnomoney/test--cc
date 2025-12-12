@@ -21,20 +21,23 @@ body {
 
 /* MAIN WRAPPER */
 #app {
-  position: relative;
+  position: absolute;
+  inset: 0;
   width: 100vw;
-  height: 100vh;
+  height: 100dvh; /* CHUẨN 100% CHIỀU CAO iPAD */
   max-width: 1620px;
-  max-height: 1954px;
+  max-height: 2160px;
   margin: 0 auto;
   overflow: hidden;
 }
 
 /* BACKGROUND VIDEO */
 #bgVideo {
+  position: absolute;
+  inset: 0;
   width: 100%;
   height: 100%;
-  object-fit: contain;
+  object-fit: cover; /* hoặc contain if cần */
 }
 
 /* HOTSPOT */
