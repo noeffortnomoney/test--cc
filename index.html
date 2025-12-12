@@ -539,7 +539,46 @@ function makeBurst(container) {
     setTimeout(() => p.remove(), 1400);
   }
 }
+function getVideoMetrics() {
+  const video = document.getElementById("bgVideo");
+  const container = document.getElementById("app");
 
+  const videoRatio = video.videoWidth / video.videoHeight;
+  const containerRatio = container.offsetWidth / container.offsetHeight;
+
+  let displayWidth, displayHeight, offsetX, offsetY;
+
+  if (videoRatio > containerRatio) {
+    // Video quá rộng → fit theo chiều rộng container
+    displayWidth = container.offsetWidth;
+    displayHeight = displayWidth / videoRatio;
+    offsetX = 0;
+    offsetY = (container.offsetHeight - displayHeight) / 2;
+  } else {
+    // Video quá cao → fit theo chiều cao container
+    displayHeight = container.offsetHeight;
+    displayWidth = displayHeight * videoRatio;
+    offsetX = (container.offsetWidth - displayWidth) / 2;
+    offsetY = 0;
+  }
+
+  return { displayWidth, displayHeight, offsetX, offsetY };
+}
+function updateHotspotPositions() {
+  const { displayWidth, displayHeight, offsetX, offsetY } = getVideoMetrics();
+
+  ornamentPositions.forEach((pos, index) => {
+    const dot = document.getElementsByClassName("hotspot")[index];
+
+    const x = (parseFloat(pos.x) / 100) * displayWidth + offsetX;
+    const y = (parseFloat(pos.y) / 100) * displayHeight + offsetY;
+
+    dot.style.left = x + "px";
+    dot.style.top = y + "px";
+  });
+}
+bgVideo.addEventListener("loadedmetadata", updateHotspotPositions);
+window.addEventListener("resize", updateHotspotPositions);
 
 </script>
 </body>
