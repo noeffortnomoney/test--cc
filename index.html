@@ -214,6 +214,9 @@ body {
 </div>
 
 <script>
+  let fwInterval = null;
+let fwTimeout = null;
+
 /* =====================================================
       HOTSPOTS
 ===================================================== */
@@ -258,7 +261,6 @@ function openPopup(id) {
 
   setTimeout(() => {
     closePopup();
-    
   }, 15000);
 }
 
@@ -293,8 +295,6 @@ generateSnow();
       FIREWORKS — continuous for 7 seconds
 ===================================================== */
 /* FIREWORKS — visible, no left-column artifact, lasts 7s */
-let fwInterval = null;
-let fwTimeout = null;
 
 function startFireworks() {
   // avoid duplicate container
