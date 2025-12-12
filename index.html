@@ -201,12 +201,18 @@ body {
     height: 100vh;
     background: #000;
   }
+  .hotspot {
+    width: 70px;
+    height: 70px;
+  }
 }
-
+/* =========================================================
+   ==============   768px ≤ TABLET ≤ 1024px    =====================
+========================================================= */
 @media (min-width: 768px) and (max-width: 1024px) {
   .hotspot {
-    width: 52px;
-    height: 52px;
+    width: 84px;
+    height: 84px;
   }
 
   #closeBtn {
@@ -225,8 +231,8 @@ body {
 ========================================================= */
 @media (min-width: 1025px) and (max-width: 1366px) {
   .hotspot {
-    width: 58px;
-    height: 58px;
+    width: 84px;
+    height: 84px;
   }
 
   #closeBtn {
@@ -245,8 +251,8 @@ body {
 ========================================================= */
 @media (min-width: 1367px) and (max-width: 1919px) {
   .hotspot {
-    width: 70px;
-    height: 70px;
+    width: 84px;
+    height: 84px;
     filter: blur(12px);
   }
 
@@ -275,8 +281,8 @@ body {
   }
 
   .hotspot {
-    width: 80px;
-    height: 80px;
+    width: 84px;
+    height: 84px;
   }
 
   #closeBtn {
@@ -365,13 +371,13 @@ body {
       HOTSPOTS
 ===================================================== */
 const ornamentPositions = [
-  { id: 1, x: "50%", y: "16%" },
-  { id: 2, x: "49%", y: "29%" },
-  { id: 3, x: "58%", y: "43%" },
-  { id: 4, x: "40%", y: "51%" },
-  { id: 5, x: "64%", y: "61%" },
-  { id: 6, x: "30%", y: "67%" },
-  { id: 7, x: "48%", y: "67%" },
+  { id: 1, x: "50%", y: "18%" },
+  { id: 2, x: "50%", y: "31%" },
+  { id: 3, x: "62%", y: "44%" },
+  { id: 4, x: "37%", y: "52%" },
+  { id: 5, x: "69%", y: "63%" },
+  { id: 6, x: "28%", y: "68%" },
+  { id: 7, x: "47%", y: "68%" },
 ];
 
 const app = document.getElementById("app");
