@@ -113,6 +113,8 @@ body {
   
 /* TEXT */
 .popupText {
+  font-family: "Inter", "Helvetica Neue", Arial, sans-serif;
+  letter-spacing: -0.02em;
   position: absolute;
   inset: 0;
   display: none;
@@ -127,10 +129,15 @@ body {
   font-size: clamp(28px, 4vw, 46px);
   line-height: 1.15;
   font-weight: 700;
-  color: #000;
+  color: #111;
 
   opacity: 0;
   transform: translateY(20px) scale(0.98);
+  -webkit-text-stroke: 1px rgba(255,255,255,0.6);
+}
+.popupText .giftName {
+  font-weight: 800;
+  letter-spacing: -0.01em;
 }
 
 .popupText.show {
@@ -384,13 +391,13 @@ body {
     </video>
 
     <!-- TEXT LAYERS -->
-    <div class="popupText" id="text1">Bạn đã trúng<br>01 gối Kymdan<br>PressureFree Air</div>
-    <div class="popupText" id="text2">Bạn đã trúng<br>01 gối Kymdan<br>Glory Air</div>
-    <div class="popupText" id="text3">Bạn đã trúng<br>01 gối Kymdan<br>PressureFree Max</div>
-    <div class="popupText" id="text4">Bạn đã trúng<br>01 gối Kymdan<br>PressureFree Plus</div>
-    <div class="popupText" id="text5">Bạn đã trúng<br>01 bộ ga Kymdan<br>Lavish Prime</div>
-    <div class="popupText" id="text6">Bạn đã trúng<br>01 bộ ga Kymdan<br>Serenity</div>
-    <div class="popupText" id="text7">Bạn đã trúng<br>01 mền chăn Kymdan<br>SleepCool</div>
+    <div class="popupText" id="text1">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>PressureFree Air</span></div>
+    <div class="popupText" id="text2">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>Glory Air</span></div>
+    <div class="popupText" id="text3">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>PressureFree Max</span></div>
+    <div class="popupText" id="text4">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>PressureFree Plus</span></div>
+    <div class="popupText" id="text5">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>Lavish Prime</span></div>
+    <div class="popupText" id="text6">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>Serenity</span></div>
+    <div class="popupText" id="text7">Bạn đã trúng<br><span class="giftName">01 gối Kymdan<br>SleepCool</span></div>
 
   </div>
 </div>
