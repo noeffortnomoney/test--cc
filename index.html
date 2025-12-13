@@ -6,7 +6,6 @@
 <title>Christmas Tree (Version 1)</title>
 
 <style>
-/* RESET */
 * {
   margin: 0;
   padding: 0;
@@ -54,8 +53,6 @@ body {
     rgba(255,255,255,0) 60%
   );
   filter: blur(10px);
-  
-
   animation: float 2.2s ease-in-out infinite; */
 }
 
@@ -114,7 +111,6 @@ body {
   z-index: 10;
 }
   
-
 /* TEXT */
 .popupText {
   position: absolute;
@@ -133,7 +129,6 @@ body {
   font-weight: 700;
   color: #000;
 }
-
 
 /* SNOW */
 .snowflake {
@@ -178,7 +173,6 @@ body {
     opacity: 0;
   }
 }
-
 /* =========================================================
    ==============    MOBILE ≤ 768px    =====================
 ========================================================= */
@@ -238,7 +232,6 @@ body {
     font-size: clamp(30px, 4vw, 50px);
   }
 }
-
 /* =========================================================
    LAPTOP 1025px → 1366px
 ========================================================= */
@@ -262,7 +255,6 @@ body {
     font-size: clamp(31px, 3vw, 50px);
   }
 }
-
 /* =========================================================
    PC 1367px → 1919px
 ========================================================= */
@@ -288,7 +280,6 @@ body {
     line-height: 1.1;
   }
 }
-
 /* =========================================================
    DESKTOP ≥ 1920px
 ========================================================= */
@@ -317,7 +308,6 @@ body {
     font-size: clamp(30px, 2vw, 50px);
   }
 }
-
 /* =========================================================
    VIDEO FIX CHUNG — ÁP DỤNG CHO TẤT CẢ ≥ 1024px
    Video luôn vào giữa, không crop, thừa hai bên trái/phải OK
@@ -351,9 +341,9 @@ body {
 
 </style>
 </head>
-
+  
 <body>
-
+  
 <div id="app">
   <video id="bgVideo"
     src="https://res.cloudinary.com/ddcbvgrxw/video/upload/v1765425321/BocTham_1620x1954_-_Testcode_haxvzm.mp4"
@@ -396,7 +386,7 @@ const ornamentPositions = [
   { id: 4, x: "37%", y: "51%" },
   { id: 5, x: "70%", y: "62%" },
   { id: 6, x: "27%", y: "68%" },
-  { id: 7, x: "47%", y: "68%" },
+  { id: 7, x: "47%", y: "70%" },
 ];
 
 const app = document.getElementById("app");
