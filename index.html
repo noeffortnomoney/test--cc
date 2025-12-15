@@ -368,22 +368,20 @@ body {
 .giftImage {
   position: absolute;
   left: 50%;
-  top: 58%;              /* chỉnh nhẹ theo layout trắng */
-  transform: translateX(-50%);
+  top: 60%;
 
   width: 26%;
   max-width: 320px;
   height: auto;
 
-  z-index: 60;
+  z-index: 80;
   pointer-events: none;
 
   opacity: 0;
-  transition: opacity 0.4s ease;
+  transform: translateX(-50%) translateY(10px);
+
+  transition: opacity 0.4s ease, transform 0.4s ease;
 }
-
-
-
 </style>
 </head>
   
@@ -419,6 +417,7 @@ body {
         class="giftImage"
         src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
         alt="Gối Kymdan PressureFree Air"
+         id="gift1"
       />
     <div class="popupText" id="text2">Quý khách hàng <br> đã nhận được phần quà <br><span class="giftName">01 gối Kymdan<br>Glory Air<br>(trị giá 2.678.000 VND)</span>  
     </div>
@@ -426,6 +425,7 @@ body {
       class="giftImage"
       src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
       alt="Gối Kymdan PressureFree Air"
+      id="gift2"
     />
     <div class="popupText" id="text3">Quý khách hàng <br> đã nhận được phần quà <br><span class="giftName">01 gối Kymdan<br>PressureFree Max<br>(trị giá 2.678.000 VND)</span>
     </div>
@@ -433,6 +433,7 @@ body {
         class="giftImage"
         src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
         alt="Gối Kymdan PressureFree Air"
+       id="gift3"
       />
     <div class="popupText" id="text4">Quý khách hàng <br> đã nhận được phần quà <br><span class="giftName">01 gối Kymdan<br>PressureFree Plus<br>(trị giá 2.678.000 VND)</span>
     </div>
@@ -440,6 +441,7 @@ body {
         class="giftImage"
         src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
         alt="Gối Kymdan PressureFree Air"
+         id="gift4"
       />
     <div class="popupText" id="text5">Quý khách hàng <br> đã nhận được phần quà <br><span class="giftName">01 gối Kymdan<br>Lavish Prime<br>(trị giá 2.678.000 VND)</span>
     </div>
@@ -447,6 +449,7 @@ body {
         class="giftImage"
         src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
         alt="Gối Kymdan PressureFree Air"
+         id="gift5"
       />
     <div class="popupText" id="text6">Quý khách hàng <br> đã nhận được phần quà <br><span class="giftName">01 gối Kymdan<br>Serenity<br>(trị giá 2.678.000 VND)</span>
     </div>
@@ -454,6 +457,7 @@ body {
         class="giftImage"
         src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
         alt="Gối Kymdan PressureFree Air"
+         id="gift6"
       />
     <div class="popupText" id="text7">Quý khách hàng <br> đã nhận được phần quà <br><span class="giftName">01 gối Kymdan<br>SleepCool<br>(trị giá 2.678.000 VND)</span>
     </div>
@@ -461,6 +465,7 @@ body {
         class="giftImage"
         src="https://res.cloudinary.com/ddcbvgrxw/image/upload/v1765796409/Pressurefree_Max_zrfiye.webp"
         alt="Gối Kymdan PressureFree Air"
+       id="gift7"
       />
   </div>
 </div>
@@ -684,15 +689,23 @@ window.addEventListener("resize", updateHotspotPositions);
 document.querySelectorAll(".giftImage").forEach(img => {
   img.style.opacity = "0";
 });
-
-document.querySelectorAll(".giftImage").forEach(img => {
+// ===== RESET TẤT CẢ ẢNH GỐI =====
+const allGifts = document.querySelectorAll(".giftImage");
+allGifts.forEach(img => {
   img.style.opacity = "0";
+  img.style.transform = "translateX(-50%) translateY(10px)";
 });
 
-const gift = document.getElementById("gift" + id);
+// ===== HIỆN ĐÚNG ẢNH THEO ID =====
+const gift = document.getElementById(`gift${id}`);
 if (gift) {
+  // force reflow để animation luôn chạy
+  void gift.offsetWidth;
+
   gift.style.opacity = "1";
+  gift.style.transform = "translateX(-50%) translateY(0)";
 }
+
 
 
 </script>
