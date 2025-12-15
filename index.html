@@ -689,22 +689,49 @@ window.addEventListener("resize", updateHotspotPositions);
 document.querySelectorAll(".giftImage").forEach(img => {
   img.style.opacity = "0";
 });
-// ===== RESET TẤT CẢ ẢNH GỐI =====
-const allGifts = document.querySelectorAll(".giftImage");
-allGifts.forEach(img => {
-  img.style.opacity = "0";
-  img.style.transform = "translateX(-50%) translateY(10px)";
-});
 
-// ===== HIỆN ĐÚNG ẢNH THEO ID =====
-const gift = document.getElementById(`gift${id}`);
-if (gift) {
-  // force reflow để animation luôn chạy
-  void gift.offsetWidth;
+  function openPopup(id) {
+  // clear auto close
+  if (autoCloseTimeout) {
+    clearTimeout(autoCloseTimeout);
+    autoCloseTimeout = null;
+  }
 
-  gift.style.opacity = "1";
-  gift.style.transform = "translateX(-50%) translateY(0)";
+  popupOverlay.style.display = "flex";
+
+  /* ===== TEXT ===== */
+  document.querySelectorAll(".popupText").forEach(t => {
+    t.style.display = "none";
+    t.classList.remove("show");
+  });
+
+  const text = document.getElementById("text" + id);
+  if (text) {
+    text.style.display = "flex";
+    void text.offsetWidth; // force reflow
+    text.classList.add("show");
+  }
+
+  /* ===== GIFT IMAGE ===== */
+  document.querySelectorAll(".giftImage").forEach(img => {
+    img.style.opacity = "0";
+    img.style.transform = "translateX(-50%) translateY(10px)";
+  });
+
+  const gift = document.getElementById("gift" + id);
+  if (gift) {
+    void gift.offsetWidth;
+    gift.style.opacity = "1";
+    gift.style.transform = "translateX(-50%) translateY(0)";
+  }
+
+  /* ===== FIREWORKS ===== */
+  stopFireworks();
+  startFireworks();
+
+  autoCloseTimeout = setTimeout(closePopup, 15000);
 }
+
 
 
 
