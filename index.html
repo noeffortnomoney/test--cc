@@ -366,15 +366,22 @@ body {
   }
 }
 .giftImage {
-  margin-top: 16px;
-  width: 38%;
-  max-width: 420px;
+  position: absolute;
+  left: 50%;
+  top: 58%;              /* chỉnh nhẹ theo layout trắng */
+  transform: translateX(-50%);
+
+  width: 26%;
+  max-width: 320px;
   height: auto;
 
-  /* tối ưu render */
-  will-change: transform, opacity;
-  backface-visibility: hidden;
+  z-index: 60;
+  pointer-events: none;
+
+  opacity: 0;
+  transition: opacity 0.4s ease;
 }
+
 
 
 </style>
@@ -674,6 +681,19 @@ function updateHotspotPositions() {
 }
 bgVideo.addEventListener("loadedmetadata", updateHotspotPositions);
 window.addEventListener("resize", updateHotspotPositions);
+document.querySelectorAll(".giftImage").forEach(img => {
+  img.style.opacity = "0";
+});
+
+document.querySelectorAll(".giftImage").forEach(img => {
+  img.style.opacity = "0";
+});
+
+const gift = document.getElementById("gift" + id);
+if (gift) {
+  gift.style.opacity = "1";
+}
+
 
 </script>
 </body>
